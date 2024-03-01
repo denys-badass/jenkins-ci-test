@@ -14,8 +14,8 @@ pipeline {
           def logContent = readFile(file: logFile).trim()
           def errors = logContent.strip('\n')
 
-          for (error in errors) {
-            if (error.contains('~4[0-9][0-9]') || error.contains('~5[0-9][0-9]')) {
+          for (String error : errors) {
+            if (error =~ /.* (4[0-9][0-9]|5[0-9][0-9]) .*/) {
               echo error
             }
           }
