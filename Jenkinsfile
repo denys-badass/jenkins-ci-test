@@ -11,7 +11,7 @@ pipeline {
       steps {
         script {
           sh """
-          sudo cat /var/log/arache2/access.log >> apacheErrors
+          sudo cat /var/log/apache2/access.log >> apacheErrors
           """
           def errorsFile = './apacheErrors'
           def logContent = readFile(file: apacheErrors)
