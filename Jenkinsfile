@@ -11,7 +11,7 @@ pipeline {
       steps {
         script {
           def logFile = '/var/log/apache2/access.log'
-          def logContent = readFile(file: logFile).trim()
+          def logContent = readFile(file: logFile)
           def errors = logContent.strip('\n')
 
           for (String error : errors) {
