@@ -14,7 +14,7 @@ pipeline {
           sudo cat /var/log/apache2/access.log >> apacheErrors
           """
           def errorsFile = './apacheErrors'
-          def logContent = readFile(file: apacheErrors)
+          def logContent = readFile(file: errorsFile)
           def errors = logContent.strip('\n')
 
           for (String error : errors) {
