@@ -12,7 +12,7 @@ pipeline {
         script {
           def errors = []
           sh """
-          grep -E '(4|5)[0-9]{2} ' /var/log/apache2/error.log >> errors.txt
+          sudo grep -E '(4|5)[0-9]{2} ' /var/log/apache2/error.log >> errors.txt
           """
           if (fileExists('errors.txt')) {
             errors = readFile('errors.txt').split("\n")
