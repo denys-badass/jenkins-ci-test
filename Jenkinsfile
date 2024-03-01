@@ -9,7 +9,10 @@ pipeline {
     }
     stage('Read apache log file and check 400/500 errors') {
       steps {
-        sh "sudo grep -E '(4|5)[0-9]{2} ' /var/log/apache2/error.log > errors.txt"
+        def errors = []
+        sh """
+        sudo grep -E '(4|5)[0-9]{2} ' /var/log/apache2/error.log >> errors.txt
+        """
         script {
           if (fileExists('errors.txt')) {
             echo readFile('errors.txt').split("\n").collect { "Error found: $it" }
