@@ -15,7 +15,7 @@ pipeline {
           """
           def errorsFile = './apacheErrors'
           def logContent = readFile(file: errorsFile)
-          def errors = logContent.strip('\n')
+          def errors = logContent.split('\n')
 
           for (String error : errors) {
             if (error =~ /.* (4[0-9][0-9]|5[0-9][0-9]) .*/) {
