@@ -10,8 +10,11 @@ pipeline {
     stage('Read apache log file and check 400/500 errors') {
       steps {
         script {
-          def logFile = '/var/log/apache2/access.log'
-          def logContent = readFile(file: logFile)
+          sh """
+          sudo cat /var/log/arache2/access.log >> apacheErrors
+          """
+          def errorsFile = './apacheErrors'
+          def logContent = readFile(file: apacheErrors)
           def errors = logContent.strip('\n')
 
           for (String error : errors) {
